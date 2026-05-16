@@ -29,11 +29,7 @@
 #include "ext/gif.h"
 #include "ext/png.h"
 
-#if defined(TIC80_PRO)
 #include "studio/project.h"
-#else
-#include "cart.h"
-#endif
 
 #include <ctype.h>
 #include <string.h>
@@ -194,9 +190,7 @@ static bool addMenuItem(const char* name, const char* title, const char* hash, s
     if(dir
         || tic_tool_has_ext(name, CartExt)
         || tic_tool_has_ext(name, PngExt)
-#if defined(TIC80_PRO)
         || project_ext(name)
-#endif
         )
     {
         data->items = realloc(data->items, sizeof(SurfItem) * ++data->count);
@@ -423,10 +417,8 @@ static void loadCover(Surf* surf)
                     }
                     else memset(cart, 0, sizeof(tic_cartridge));
                 }
-#if defined(TIC80_PRO)
                 else if(project_ext(item->name))
                     tic_project_load(item->name, data, size, cart);
-#endif
                 else
                     tic_cart_load(cart, data, size);
 

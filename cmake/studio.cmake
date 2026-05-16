@@ -43,10 +43,8 @@ if(BUILD_EDITORS)
     )
 endif()
 
-if(BUILD_PRO)
-    set(TIC80STUDIO_SRC ${TIC80STUDIO_SRC}
-        ${TIC80LIB_DIR}/studio/project.c)
-endif()
+set(TIC80STUDIO_SRC ${TIC80STUDIO_SRC}
+    ${TIC80LIB_DIR}/studio/project.c)
 
 set(TIC80_OUTPUT tic80)
 
